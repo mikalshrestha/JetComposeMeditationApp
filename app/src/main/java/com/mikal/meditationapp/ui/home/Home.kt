@@ -1,6 +1,5 @@
 package com.mikal.meditationapp.ui.home
 
-import Feed
 import androidx.annotation.FloatRange
 import androidx.annotation.StringRes
 import androidx.compose.animation.animateColorAsState
