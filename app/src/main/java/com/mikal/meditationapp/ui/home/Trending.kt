@@ -5,8 +5,6 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun Trending(
-    onSnackClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
 ) {
 
 }

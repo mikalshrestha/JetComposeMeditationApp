@@ -49,12 +49,6 @@ fun meditationNavGraph(
                 modifier = modifier
             )
         }
-        composable(
-            "${MainDestinations.SNACK_DETAIL_ROUTE}/{$SNACK_ID_KEY}",
-            arguments = listOf(navArgument(SNACK_ID_KEY) { type = NavType.LongType })
-        ) { backStackEntry ->
-
-        }
     }
 }
 

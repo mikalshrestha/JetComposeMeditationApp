@@ -3,19 +3,8 @@ package com.mikal.meditationapp.ui.components
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -34,17 +23,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mikal.meditationapp.R
-import com.mikal.meditationapp.models.CollectionType
 import com.google.accompanist.coil.rememberCoilPainter
+import com.google.accompanist.insets.statusBarsHeight
 import com.mikal.meditationapp.commons.mirroringIcon
-import com.mikal.meditationapp.models.Schedule
-import com.mikal.meditationapp.models.ScheduleCollection
-import com.mikal.meditationapp.models.schedules
+import com.mikal.meditationapp.models.*
 import com.mikal.meditationapp.ui.theme.MeditationTheme
 
 private val HighlightCardWidth = 170.dp
@@ -139,17 +128,33 @@ private fun HighlightedSchedules(
 }
 
 @Composable
-private fun Schedules(
+fun Schedules(
     schedules: List<Schedule>,
     onSnackClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyRow(
-        modifier = modifier,
-        contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+    Text(
+        text = "Schedule",
+        style = MaterialTheme.typography.h6,
+        color = MeditationTheme.colors.textSecondary,
+        textAlign = TextAlign.Center,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+    )
+    LazyColumn(
+        modifier
+            .fillMaxSize()
+            .padding(10.dp)
     ) {
-        items(schedules) { schedules ->
-            ScheduleItem(schedules, onSnackClick)
+        item {
+            Spacer(Modifier.statusBarsHeight(additional = 0.dp))
+        }
+        itemsIndexed(schedules) { index, schedules ->
+            if (index > 0) {
+                meditationDivider(thickness = 2.dp)
+            }
+            SchedulesItem(schedules, onSnackClick)
         }
     }
 }
@@ -160,27 +165,112 @@ fun ScheduleItem(
     onSnackClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    MeditationSurface(
-        shape = MaterialTheme.shapes.medium,
-        modifier = modifier.padding(
-            start = 4.dp,
-            end = 4.dp,
-            bottom = 8.dp
-        )
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
+    Column(modifier = modifier) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
+                .heightIn(min = 56.dp)
                 .clickable(onClick = { onSnackClick(schedule.id) })
-                .padding(8.dp)
+                .padding(start = 24.dp)
         ) {
             ScheduleImage(
                 imageUrl = schedule.imageUrl,
-                elevation = 4.dp,
-                contentDescription = null,
-                modifier = Modifier.size(120.dp)
+                contentDescription = null
             )
         }
+    }
+}
+
+@Composable
+fun SchedulesItem(
+    schedule: Schedule,
+    onSnackClick: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row() {
+
+        meditationCard(
+            modifier = modifier
+                .size(
+                    width = 170.dp,
+                    height = 250.dp
+                )
+                .padding(start = 8.dp, top = 16.dp, bottom = 16.dp)
+        ) {
+            Column(modifier = modifier) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .heightIn(min = 56.dp)
+                        .clickable(onClick = { onSnackClick(schedule.id) })
+                ) {
+                    ScheduleImage(
+                        imageUrl = schedule.imageUrl,
+                        contentDescription = null
+                    )
+                }
+            }
+        }
+        Column(
+            modifier
+                .padding(
+                    start = 8.dp,
+                    top = 30.dp,
+                    bottom = 16.dp
+                )
+        ) {
+            Row() {
+                Text(
+                    text = schedule.days,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.body1,
+                    color = MeditationTheme.colors.textSecondary,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+                Text(
+                    text = schedule.period,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.body1,
+                    color = MeditationTheme.colors.textSecondary,
+                    modifier = Modifier
+                        .padding(horizontal = 0.dp)
+                        .then(modifier.padding(start = 30.dp))
+                )
+            }
+            Spacer(modifier = Modifier.height(40.dp))
+            Text(
+                text = schedule.title,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.body1,
+                color = MeditationTheme.colors.textSecondary,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(40.dp))
+            Row(
+                modifier.padding(
+                    start = 8.dp,
+                    end = 60.dp
+                )
+            ) {
+                MeditationButton(
+                    onClick = { /* todo */ },
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = stringResource(R.string.view_all),
+                        style = MaterialTheme.typography.body1,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        maxLines = 1
+                    )
+                }
+            }
+
+        }
+
     }
 }
 
@@ -224,10 +314,7 @@ private fun HighlightScheduleItem(
                 )
                 ScheduleImage(
                     imageUrl = schedule.imageUrl,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(120.dp)
-                        .align(Alignment.BottomCenter)
+                    contentDescription = null
                 )
             }
         }
@@ -238,25 +325,103 @@ private fun HighlightScheduleItem(
 fun ScheduleImage(
     imageUrl: String,
     contentDescription: String?,
-    modifier: Modifier = Modifier,
-    elevation: Dp = 0.dp
 ) {
-    MeditationSurface(
-        color = Color.LightGray,
-        elevation = elevation,
-        shape = CircleShape,
+    Image(
+        painter = rememberCoilPainter(
+            request = imageUrl,
+            previewPlaceholder = R.drawable.placeholder,
+        ),
+        contentDescription = contentDescription,
+        modifier = Modifier.fillMaxSize(),
+        contentScale = ContentScale.FillBounds
+    )
+}
+
+@Composable
+fun ShowScheduleTutorial(
+    scheduleTutorial: ScheduleTutorial,
+    modifier: Modifier = Modifier
+) {
+    meditationCard(
         modifier = modifier
+            .size(
+                width = 350.dp,
+                height = 350.dp
+            )
+            .padding(bottom = 4.dp)
     ) {
-        Image(
-            painter = rememberCoilPainter(
-                request = imageUrl,
-                previewPlaceholder = R.drawable.placeholder,
-            ),
-            contentDescription = contentDescription,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop,
-        )
+        Column(modifier.padding(bottom = 8.dp)) {
+
+            Image(
+                painter = rememberCoilPainter(
+                    request = scheduleTutorial.imageUrl,
+                    previewPlaceholder = R.drawable.placeholder,
+                ),
+                contentDescription = null,
+                modifier = Modifier.size(
+                    width = 350.dp,
+                    height = 175.dp
+                ),
+                contentScale = ContentScale.FillBounds
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = scheduleTutorial.title,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.h6,
+                color = MeditationTheme.colors.textSecondary,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = scheduleTutorial.rating,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.body1,
+                color = MeditationTheme.colors.textSecondary,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = scheduleTutorial.description,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.body1,
+                color = MeditationTheme.colors.textSecondary,
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row() {
+                Text(
+                    text = scheduleTutorial.totalPeriod,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.body2,
+                    color = MeditationTheme.colors.textSecondary,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+                Text(
+                    text = scheduleTutorial.level,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.body1,
+                    color = MeditationTheme.colors.textSecondary,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+                Text(
+                    text = scheduleTutorial.tutorialDuration,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
+                    style = MaterialTheme.typography.body1,
+                    color = MeditationTheme.colors.textSecondary,
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
+            }
+        }
+
     }
+
 }
 
 @Preview("default")

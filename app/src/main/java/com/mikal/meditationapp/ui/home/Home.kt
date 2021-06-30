@@ -1,29 +1,21 @@
 package com.mikal.meditationapp.ui.home
 
 import androidx.annotation.FloatRange
-import androidx.annotation.StringRes
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.SpringSpec
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.Fireplace
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.outlined.PlayCircle
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,27 +28,15 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.MeasureResult
-import androidx.compose.ui.layout.MeasureScope
-import androidx.compose.ui.layout.Placeable
-import androidx.compose.ui.layout.layoutId
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.layout.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
-import androidx.core.os.ConfigurationCompat
-import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
-import androidx.navigation.NavGraphBuilder
+import androidx.navigation.*
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.mikal.meditationapp.R
 import com.google.accompanist.insets.navigationBarsPadding
 import com.mikal.meditationapp.ui.components.MeditationSurface
 import com.mikal.meditationapp.ui.theme.MeditationTheme
@@ -68,26 +48,25 @@ fun NavGraphBuilder.addHomeGraph(
     composable(HomeSections.FEED.route) { from ->
         Feed(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
     }
-    composable(HomeSections.PLAY.route) { from ->
-        Play(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
+    composable(HomeSections.PLAY.route) {
+        Play()
     }
-    composable(HomeSections.TRENDING.route) { from ->
-        Trending(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
+    composable(HomeSections.TRENDING.route) {
+        Trending()
     }
-    composable(HomeSections.SETTINGS.route) { from ->
-        Settings(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
+    composable(HomeSections.SETTINGS.route) {
+        Settings()
     }
 }
 
 enum class HomeSections(
-    @StringRes val title: Int,
     val icon: ImageVector,
     val route: String
 ) {
-    FEED(R.string.home_feed, Icons.Outlined.Home, "home/feed"),
-    PLAY(R.string.home_play, Icons.Outlined.Search, "home/play"),
-    TRENDING(R.string.home_trending, Icons.Outlined.ShoppingCart, "home/trending"),
-    SETTINGS(R.string.home_settings, Icons.Outlined.AccountCircle, "home/settings")
+    FEED(Icons.Outlined.Home, "home/feed"),
+    PLAY(Icons.Outlined.PlayCircle, "home/play"),
+    TRENDING( Icons.Outlined.Fireplace, "home/trending"),
+    SETTINGS(Icons.Outlined.Settings, "home/settings")
 }
 
 @Composable
@@ -140,16 +119,6 @@ fun meditationBottomBar(
                             )
                         },
                         text = {
-                            Text(
-                                text = stringResource(section.title).uppercase(
-                                    ConfigurationCompat.getLocales(
-                                        LocalConfiguration.current
-                                    ).get(0)
-                                ),
-                                color = tint,
-                                style = MaterialTheme.typography.button,
-                                maxLines = 1
-                            )
                         },
                         selected = selected,
                         onSelected = {
@@ -208,11 +177,11 @@ private fun meditationBottomNavLayout(
     }
 
     // Animate the position of the indicator
-    val indicatorIndex = remember { Animatable(0f) }
-    val targetIndicatorIndex = selectedIndex.toFloat()
-    LaunchedEffect(targetIndicatorIndex) {
-        indicatorIndex.animateTo(targetIndicatorIndex, animSpec)
-    }
+//    val indicatorIndex = remember { Animatable(0f) }
+//    val targetIndicatorIndex = selectedIndex.toFloat()
+//    LaunchedEffect(targetIndicatorIndex) {
+//        indicatorIndex.animateTo(targetIndicatorIndex, animSpec)
+//    }
 
     Layout(
         modifier = modifier.height(BottomNavHeight),
@@ -240,19 +209,11 @@ private fun meditationBottomNavLayout(
                     )
                 )
             }
-        val indicatorPlaceable = indicatorMeasurable.measure(
-            constraints.copy(
-                minWidth = selectedWidth,
-                maxWidth = selectedWidth
-            )
-        )
 
         layout(
             width = constraints.maxWidth,
             height = itemPlaceables.maxByOrNull { it.height }?.height ?: 0
         ) {
-            val indicatorLeft = indicatorIndex.value * unselectedWidth
-            indicatorPlaceable.placeRelative(x = indicatorLeft.toInt(), y = 0)
             var x = 0
             itemPlaceables.forEach { placeable ->
                 placeable.placeRelative(x = x, y = 0)

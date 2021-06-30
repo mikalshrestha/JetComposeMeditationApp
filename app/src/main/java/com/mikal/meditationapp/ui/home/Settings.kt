@@ -5,8 +5,6 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun Settings(
-    onSnackClick: (Long) -> Unit,
-    modifier: Modifier = Modifier
 ) {
 
 }

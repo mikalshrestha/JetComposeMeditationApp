@@ -20,21 +20,21 @@ val schedules = listOf(
     Schedule(
         id = 1L,
         title = "Breathing Practices and Introduction",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
         days = "Day1",
         period = "30 min"
     ),
     Schedule(
         id = 2L,
         title = "Breathing Practices and Introduction",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
         days = "Day2",
         period = "30 min"
     ),
     Schedule(
         id = 3L,
         title = "Breathing Practices and Introduction",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
         days = "Day3",
         period = "30 min"
     ),
