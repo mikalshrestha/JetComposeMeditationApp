@@ -39,7 +39,8 @@ private val LightColorPalette = MeditationColors(
     gradient2_2 = listOf(Ocean3, Shadow3),
     gradient2_3 = listOf(Lavender3, Rose2),
     tornado1 = listOf(Shadow4, Ocean3),
-    isDark = false
+    isDark = false,
+    textColorWhite = Shadow0
 )
 
 private val DarkColorPalette = MeditationColors(
@@ -66,7 +67,8 @@ private val DarkColorPalette = MeditationColors(
     gradient2_2 = listOf(Ocean4, Shadow2),
     gradient2_3 = listOf(Lavender3, Rose3),
     tornado1 = listOf(Shadow4, Ocean3),
-    isDark = true
+    isDark = true,
+    textColorWhite = Shadow0
 )
 
 @Composable
@@ -133,7 +135,8 @@ class MeditationColors(
     iconInteractiveInactive: Color,
     error: Color,
     notificationBadge: Color = error,
-    isDark: Boolean
+    isDark: Boolean,
+    textColorWhite: Color
 ) {
     var gradient6_1 by mutableStateOf(gradient6_1)
         private set
@@ -191,6 +194,8 @@ class MeditationColors(
         private set
     var isDark by mutableStateOf(isDark)
         private set
+    var textColorWhite by mutableStateOf(textColorWhite)
+        private set
 
     fun update(other: MeditationColors) {
         gradient6_1 = other.gradient6_1
@@ -221,6 +226,7 @@ class MeditationColors(
         error = other.error
         notificationBadge = other.notificationBadge
         isDark = other.isDark
+        textColorWhite = other.textColorWhite
     }
 
     fun copy(): MeditationColors = MeditationColors(
@@ -252,6 +258,7 @@ class MeditationColors(
         error = error,
         notificationBadge = notificationBadge,
         isDark = isDark,
+        textColorWhite = textColorWhite
     )
 }
 

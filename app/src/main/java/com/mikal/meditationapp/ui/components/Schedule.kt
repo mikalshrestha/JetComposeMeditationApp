@@ -2,6 +2,7 @@ package com.mikal.meditationapp.ui.components
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -29,6 +30,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mikal.meditationapp.R
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.insets.statusBarsHeight
@@ -344,84 +346,121 @@ fun ShowScheduleTutorial(
 ) {
     meditationCard(
         modifier = modifier
-            .size(
-                width = 350.dp,
-                height = 350.dp
-            )
+            .width(IntrinsicSize.Max)
+            .wrapContentHeight()
             .padding(bottom = 4.dp)
     ) {
-        Column(modifier.padding(bottom = 8.dp)) {
-
+        Column() {
             Image(
                 painter = rememberCoilPainter(
                     request = scheduleTutorial.imageUrl,
                     previewPlaceholder = R.drawable.placeholder,
                 ),
                 contentDescription = null,
-                modifier = Modifier.size(
-                    width = 350.dp,
-                    height = 175.dp
-                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(225.dp),
                 contentScale = ContentScale.FillBounds
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = scheduleTutorial.title,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.h6,
-                color = MeditationTheme.colors.textSecondary,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = scheduleTutorial.rating,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.body1,
-                color = MeditationTheme.colors.textSecondary,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = scheduleTutorial.description,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.body1,
-                color = MeditationTheme.colors.textSecondary,
-                modifier = Modifier.padding(horizontal = 16.dp)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Row() {
+
+            Column(
+                modifier
+                    .background(MeditationTheme.colors.brand)
+                    .padding(bottom = 8.dp)) {
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = scheduleTutorial.totalPeriod,
-                    maxLines = 3,
+                    text = scheduleTutorial.title,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.body2,
-                    color = MeditationTheme.colors.textSecondary,
+                    style = MaterialTheme.typography.subtitle1,
+                    color = MeditationTheme.colors.textColorWhite,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = scheduleTutorial.level,
-                    maxLines = 3,
+                    text = scheduleTutorial.rating,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.body1,
-                    color = MeditationTheme.colors.textSecondary,
+                    color = MeditationTheme.colors.textColorWhite,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
+                Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = scheduleTutorial.tutorialDuration,
-                    maxLines = 3,
+                    text = scheduleTutorial.description,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.body1,
-                    color = MeditationTheme.colors.textSecondary,
+                    style = MaterialTheme.typography.body1.copy(lineHeight = 16.sp),
+                    color = MeditationTheme.colors.textColorWhite,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = scheduleTutorial.totalPeriod,
+                        maxLines = 1,
+                        textAlign = TextAlign.Start,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.body2,
+                        color = MeditationTheme.colors.textColorWhite,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                            .weight(1f)
+                    )
+                    Text(
+                        text = scheduleTutorial.level,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.body1,
+                        color = MeditationTheme.colors.textColorWhite,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                            .weight(1f)
+                    )
+                    Text(
+                        text = scheduleTutorial.tutorialDuration,
+                        maxLines = 1,
+                        textAlign = TextAlign.End,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.body1,
+                        color = MeditationTheme.colors.textColorWhite,
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                            .weight(1f)
+                    )
+                }
             }
         }
 
     }
 
+}
+
+@Composable
+fun PlayImage(
+    imageUrl: Int,
+    contentDescription: String?,
+    modifier: Modifier = Modifier,
+    elevation: Dp = 0.dp
+) {
+    MeditationSurface(
+        color = Color.LightGray,
+        elevation = elevation,
+        shape = CircleShape,
+        modifier = modifier
+    ) {
+        Image(
+            painter = rememberCoilPainter(
+                request = imageUrl,
+                previewPlaceholder = R.drawable.placeholder,
+            ),
+            contentDescription = contentDescription,
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop,
+        )
+    }
 }
 
 @Preview("default")

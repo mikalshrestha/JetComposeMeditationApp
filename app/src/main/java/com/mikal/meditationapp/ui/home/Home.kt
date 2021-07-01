@@ -39,6 +39,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.navigationBarsPadding
 import com.mikal.meditationapp.ui.components.MeditationSurface
+import com.mikal.meditationapp.ui.components.meditationCard
 import com.mikal.meditationapp.ui.theme.MeditationTheme
 
 fun NavGraphBuilder.addHomeGraph(
@@ -48,8 +49,8 @@ fun NavGraphBuilder.addHomeGraph(
     composable(HomeSections.FEED.route) { from ->
         Feed(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
     }
-    composable(HomeSections.PLAY.route) {
-        Play()
+    composable(HomeSections.PLAY.route) { from ->
+        Play(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
     }
     composable(HomeSections.TRENDING.route) {
         Trending()
@@ -84,58 +85,60 @@ fun meditationBottomBar(
     val routes = remember { sections.map { it.route } }
     if (currentRoute in routes) {
         val currentSection = sections.first { it.route == currentRoute }
-        MeditationSurface(
-            color = color,
-            contentColor = contentColor
-        ) {
-            val springSpec = SpringSpec<Float>(
-                // Determined experimentally
-                stiffness = 800f,
-                dampingRatio = 0.8f
-            )
-            meditationBottomNavLayout(
-                selectedIndex = currentSection.ordinal,
-                itemCount = routes.size,
-                indicator = { meditationBottomNavIndicator() },
-                animSpec = springSpec,
-                modifier = Modifier.navigationBarsPadding(start = false, end = false)
+        meditationCard() {
+            MeditationSurface(
+                color = color,
+                contentColor = contentColor
             ) {
-                tabs.forEach { section ->
-                    val selected = section == currentSection
-                    val tint by animateColorAsState(
-                        if (selected) {
-                            MeditationTheme.colors.iconInteractive
-                        } else {
-                            MeditationTheme.colors.iconInteractiveInactive
-                        }
-                    )
+                val springSpec = SpringSpec<Float>(
+                    // Determined experimentally
+                    stiffness = 800f,
+                    dampingRatio = 0.8f
+                )
+                meditationBottomNavLayout(
+                    selectedIndex = currentSection.ordinal,
+                    itemCount = routes.size,
+                    indicator = { meditationBottomNavIndicator() },
+                    animSpec = springSpec,
+                    modifier = Modifier.navigationBarsPadding(start = false, end = false)
+                ) {
+                    tabs.forEach { section ->
+                        val selected = section == currentSection
+                        val tint by animateColorAsState(
+                            if (selected) {
+                                MeditationTheme.colors.iconInteractive
+                            } else {
+                                MeditationTheme.colors.iconInteractiveInactive
+                            }
+                        )
 
-                    meditationBottomNavigationItem(
-                        icon = {
-                            Icon(
-                                imageVector = section.icon,
-                                tint = tint,
-                                contentDescription = null
-                            )
-                        },
-                        text = {
-                        },
-                        selected = selected,
-                        onSelected = {
-                            if (section.route != currentRoute) {
-                                navController.navigate(section.route) {
-                                    launchSingleTop = true
-                                    restoreState = true
-                                    popUpTo(findStartDestination(navController.graph).id) {
-                                        saveState = true
+                        meditationBottomNavigationItem(
+                            icon = {
+                                Icon(
+                                    imageVector = section.icon,
+                                    tint = tint,
+                                    contentDescription = null
+                                )
+                            },
+                            text = {
+                            },
+                            selected = selected,
+                            onSelected = {
+                                if (section.route != currentRoute) {
+                                    navController.navigate(section.route) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                        popUpTo(findStartDestination(navController.graph).id) {
+                                            saveState = true
+                                        }
                                     }
                                 }
-                            }
-                        },
-                        animSpec = springSpec,
-                        modifier = BottomNavigationItemPadding
-                            .clip(BottomNavIndicatorShape)
-                    )
+                            },
+                            animSpec = springSpec,
+                            modifier = BottomNavigationItemPadding
+                                .clip(BottomNavIndicatorShape)
+                        )
+                    }
                 }
             }
         }
