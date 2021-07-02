@@ -1,5 +1,6 @@
 # JetComposeMeditationApp
-Meditation Android Application using Jetpack Compose.
+
+This is a sample meditation android application that demonstrate use of Jetpack Compose. Dedicated to all Android Developers with ❤️.
 
 <b>Modules:</b>
 
