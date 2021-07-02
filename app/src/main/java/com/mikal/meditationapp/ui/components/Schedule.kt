@@ -253,13 +253,16 @@ fun SchedulesItem(
             Spacer(modifier = Modifier.height(40.dp))
             Row(
                 modifier.padding(
-                    start = 8.dp,
+                    start = 16.dp,
                     end = 60.dp
                 )
             ) {
                 MeditationButton(
                     onClick = { /* todo */ },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.size(
+                        width = 90.dp,
+                        height = 30.dp
+                    )
                 ) {
                     Text(
                         text = stringResource(R.string.view_all),
@@ -351,17 +354,31 @@ fun ShowScheduleTutorial(
             .padding(bottom = 4.dp)
     ) {
         Column() {
-            Image(
-                painter = rememberCoilPainter(
-                    request = scheduleTutorial.imageUrl,
-                    previewPlaceholder = R.drawable.placeholder,
-                ),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(225.dp),
-                contentScale = ContentScale.FillBounds
-            )
+            Column(modifier.height(225.dp)) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                    Image(
+                        painter = rememberCoilPainter(
+                            request = scheduleTutorial.imageUrl,
+                            previewPlaceholder = R.drawable.placeholder,
+                        ),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(225.dp),
+                        contentScale = ContentScale.FillBounds
+                    )
+                    Box(){
+                        Text(
+                            text = scheduleTutorial.rating,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = MaterialTheme.typography.body1,
+                            color = MeditationTheme.colors.textColorWhite,
+                            modifier = Modifier.padding(horizontal = 16.dp)
+                        )
+                    }
+                }
+            }
 
             Column(
                 modifier

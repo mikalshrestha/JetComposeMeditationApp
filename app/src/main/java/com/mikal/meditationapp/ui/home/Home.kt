@@ -50,7 +50,7 @@ fun NavGraphBuilder.addHomeGraph(
         Feed(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
     }
     composable(HomeSections.PLAY.route) { from ->
-        Play(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
+        Play(onClick = { id -> onSnackSelected(id, from) }, modifier)
     }
     composable(HomeSections.TRENDING.route) {
         Trending()
