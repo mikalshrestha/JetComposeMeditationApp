@@ -7,8 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mikal.meditationapp.models.BeginnerStepGuide
 import com.mikal.meditationapp.models.MostPopular
-import com.mikal.meditationapp.models.Schedule
-import com.mikal.meditationapp.models.ScheduleTutorial
 import com.mikal.meditationapp.repository.BeginnerGuidePlayRepo
 import com.mikal.meditationapp.ui.components.*
 

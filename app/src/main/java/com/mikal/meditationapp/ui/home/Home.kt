@@ -11,10 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Fireplace
-import androidx.compose.material.icons.outlined.PlayCircle
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -55,8 +51,8 @@ fun NavGraphBuilder.addHomeGraph(
     composable(HomeSections.TRENDING.route) {
         Trending()
     }
-    composable(HomeSections.SETTINGS.route) {
-        Settings()
+    composable(HomeSections.SETTINGS.route) { from ->
+        Settings(onClick = { id -> onSelected(id, from) }, modifier)
     }
 }
 

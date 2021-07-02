@@ -11,6 +11,7 @@ data class Profile(
     val location: String,
     val role: String,
     val aboutDescription: String,
+    val totalTrainees: String,
     val followers: String,
     val following: String,
     )
@@ -23,9 +24,10 @@ val profile = Profile(
     id = 1L,
     name = "Jonathan Patricson",
     imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
-    location = "Kathamndum, Nepal",
+    location = "Kathmandu, Nepal",
     role = "Meditator || Meditation Expert",
     aboutDescription = "Dynamic Yoga instructor commited to bringing an awareness of holistic mind and body through all form of healing and teaching modality to assist.",
+    totalTrainees = "150",
     followers = "5000",
-    following = "100"
+    following = "50"
 )
