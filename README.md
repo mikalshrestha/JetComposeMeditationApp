@@ -9,7 +9,7 @@ It uses the all the components and class releated to the Android Framework. It g
 
 - BuildSrc
 
-This module helps to list and manage all the dependencies of the app at one place. It has list of dependencies and versions of that dependencies.
+This module helps to list and manage all the dependencies of the app at one place. It has list of dependencies and versions of that dependencies. Helps for reusing the dependencies for multiple modules.
 
 <b>Mockup Design from here:</b>
 
