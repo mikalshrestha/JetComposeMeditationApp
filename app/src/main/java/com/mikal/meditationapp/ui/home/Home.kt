@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Fireplace
-import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.PlayCircle
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
@@ -27,8 +26,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.*
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -38,19 +37,20 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.navigationBarsPadding
+import com.mikal.meditationapp.R
 import com.mikal.meditationapp.ui.components.MeditationSurface
 import com.mikal.meditationapp.ui.components.meditationCard
 import com.mikal.meditationapp.ui.theme.MeditationTheme
 
 fun NavGraphBuilder.addHomeGraph(
-    onSnackSelected: (Long, NavBackStackEntry) -> Unit,
+    onSelected: (Long, NavBackStackEntry) -> Unit,
     modifier: Modifier = Modifier
 ) {
     composable(HomeSections.FEED.route) { from ->
-        Feed(onSnackClick = { id -> onSnackSelected(id, from) }, modifier)
+        Feed(onClick = { id -> onSelected(id, from) }, modifier)
     }
     composable(HomeSections.PLAY.route) { from ->
-        Play(onClick = { id -> onSnackSelected(id, from) }, modifier)
+        Play(onClick = { id -> onSelected(id, from) }, modifier)
     }
     composable(HomeSections.TRENDING.route) {
         Trending()
@@ -61,13 +61,13 @@ fun NavGraphBuilder.addHomeGraph(
 }
 
 enum class HomeSections(
-    val icon: ImageVector,
+    val icon: Int,
     val route: String
 ) {
-    FEED(Icons.Outlined.Home, "home/feed"),
-    PLAY(Icons.Outlined.PlayCircle, "home/play"),
-    TRENDING( Icons.Outlined.Fireplace, "home/trending"),
-    SETTINGS(Icons.Outlined.Settings, "home/settings")
+    FEED(R.drawable.shared, "home/feed"),
+    PLAY(R.drawable.play, "home/play"),
+    TRENDING( R.drawable.fire, "home/trending"),
+    SETTINGS(R.drawable.settings, "home/settings")
 }
 
 @Composable
@@ -115,7 +115,7 @@ fun meditationBottomBar(
                         meditationBottomNavigationItem(
                             icon = {
                                 Icon(
-                                    imageVector = section.icon,
+                                    painterResource(id = section.icon),
                                     tint = tint,
                                     contentDescription = null
                                 )
@@ -331,7 +331,7 @@ private val TextIconSpacing = 2.dp
 private val BottomNavHeight = 56.dp
 private val BottomNavLabelTransformOrigin = TransformOrigin(0f, 0.5f)
 private val BottomNavIndicatorShape = RoundedCornerShape(percent = 50)
-private val BottomNavigationItemPadding = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+private val BottomNavigationItemPadding = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)
 
 @Preview
 @Composable
