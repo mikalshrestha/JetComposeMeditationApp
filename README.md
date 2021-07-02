@@ -17,3 +17,12 @@ https://www.uplabs.com/posts/meditation-mobile-app-design-concept
 - [Android Studio](https://developer.android.com/studio) - Official android development IDE.
 
 ## - Jetpack Compose Components Used:
+- Row
+- Column
+- LazyRow
+- LazyColumn
+- Box
+- Spacer
+- ConstraintLayout
+- Compose Navigation
+- Custom Layout etc.
