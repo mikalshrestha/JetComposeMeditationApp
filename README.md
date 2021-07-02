@@ -15,3 +15,6 @@ This module helps to list and manage all the dependencies of the app at one plac
 <b>Mockup Design from here:</b>
 
 https://www.uplabs.com/posts/meditation-mobile-app-design-concept
+
+[I'm an inline-style link](https://www.google.com)
+
