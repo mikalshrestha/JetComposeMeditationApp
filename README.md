@@ -1,7 +1,8 @@
 # JetComposeMeditationApp
 Meditation Android Application using Jetpack Compose.
 
-- Modules of App
+- <b>Modules</b>
+
 App
 It uses the all the components and class releated to the Android Framework. It gets the data from repo and shows on Compose-UI.
 
