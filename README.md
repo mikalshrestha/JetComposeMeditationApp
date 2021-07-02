@@ -15,3 +15,5 @@ https://www.uplabs.com/posts/meditation-mobile-app-design-concept
 - [Kotlin](https://kotlinlang.org/) - Programming language for Android development.
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Declarative way of building android UIs.
 - [Android Studio](https://developer.android.com/studio) - Official android development IDE.
+
+## - Jetpack Compose Components Used:
