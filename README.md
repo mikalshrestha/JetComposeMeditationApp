@@ -35,10 +35,10 @@ https://www.uplabs.com/posts/meditation-mobile-app-design-concept
 ## - Screenshots:
 
 <img src="Screenshots/Screenshot_1625298797.png" width="240"></img>
-<img src="Screenshots/Screenshot_1625298835.png" width="240"></img>
 <img src="Screenshots/Screenshot_1625298846.png" width="240"></img>
+<img src="Screenshots/Screenshot_1625298835.png" width="240"></img>
 <img src="Screenshots/Screenshot_1625298855.png" width="240"></img>
-<img src="Screenshots/Screenshot_1625298866.png" width="240"></img>
 <img src="Screenshots/Screenshot_1625298986.png" width="240"></img>
+<img src="Screenshots/Screenshot_1625298866.png" width="240"></img>
 
 
