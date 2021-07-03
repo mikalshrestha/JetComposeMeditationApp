@@ -1,7 +1,6 @@
 package com.mikal.meditationapp.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -17,15 +16,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.coil.rememberCoilPainter
+import com.mikal.meditationapp.R
 import com.mikal.meditationapp.models.Profile
 import com.mikal.meditationapp.ui.theme.MeditationTheme
-import com.mikal.meditationapp.R
 
 
 @Composable
 fun ProfileView(
     profileData: Profile,
-    onClick: (Long) -> Unit,
     left: Float,
     gradient: List<Color>,
     gradientWidth: Float,
@@ -40,7 +38,6 @@ fun ProfileView(
     ) {
         Column(
             modifier = Modifier
-                .clickable(onClick = { onClick(profileData.id) })
                 .fillMaxSize()
         ) {
             Box(

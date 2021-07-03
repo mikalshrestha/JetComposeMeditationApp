@@ -51,8 +51,8 @@ fun NavGraphBuilder.addHomeGraph(
     composable(HomeSections.TRENDING.route) {
         Trending( modifier)
     }
-    composable(HomeSections.SETTINGS.route) { from ->
-        Settings(onClick = { id -> onSelected(id, from) }, modifier)
+    composable(HomeSections.SETTINGS.route) {
+        Settings( modifier)
     }
 }
 

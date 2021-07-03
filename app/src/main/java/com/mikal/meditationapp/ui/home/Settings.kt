@@ -22,13 +22,11 @@ private val ProfileCardPadding = 16.dp
 
 @Composable
 fun Settings(
-    onClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val profileData = remember { ProfileRepo.getProfileDetail() }
     Settings(
         profileData,
-        onClick,
         modifier
     )
 }
@@ -36,13 +34,12 @@ fun Settings(
 @Composable
 private fun Settings(
     profileData: Profile,
-    onClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     MeditationSurface(modifier = modifier.fillMaxSize()) {
         Box {
             Column() {
-                ShowProfileView(profileData, onClick)
+                ShowProfileView(profileData)
                 BottomProfileView(profileData)
             }
 
@@ -53,7 +50,6 @@ private fun Settings(
 @Composable
 private fun ShowProfileView(
     profileData: Profile,
-    onClick: (Long) -> Unit,
     index: Int = 0,
     ) {
     val left = index * with(LocalDensity.current) {
@@ -70,7 +66,6 @@ private fun ShowProfileView(
     }
     ProfileView(
         profileData = profileData,
-        onClick = onClick,
         left,
         gradient,
         gradientWidth,
