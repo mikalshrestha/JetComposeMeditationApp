@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.Dp
 import com.mikal.meditationapp.ui.theme.MeditationTheme
 
 /**
- * Wrap Material [androidx.compose.material.Scaffold] and set [JetsnackTheme] colors.
+ * Wrap Material [androidx.compose.material.Scaffold] and set [Theme] colors.
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

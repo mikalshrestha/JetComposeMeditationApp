@@ -21,8 +21,7 @@ import com.mikal.meditationapp.ui.theme.MeditationTheme
 import kotlin.math.ln
 
 /**
- * An alternative to [androidx.compose.material.Surface] utilizing
- * [com.example.jetsnack.ui.theme.JetsnackColors]
+ * An alternative to [androidx.compose.material.Surface]
  */
 @Composable
 fun MeditationSurface(
@@ -51,8 +50,6 @@ fun MeditationSurface(
 @Composable
 private fun getBackgroundColorForElevation(color: Color, elevation: Dp): Color {
     return if (elevation > 0.dp // && https://issuetracker.google.com/issues/161429530
-    // JetsnackTheme.colors.isDark //&&
-    // color == JetsnackTheme.colors.uiBackground
     ) {
         color.withElevation(elevation)
     } else {

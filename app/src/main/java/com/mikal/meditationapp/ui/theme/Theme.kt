@@ -104,7 +104,7 @@ object MeditationTheme {
 }
 
 /**
- * Jetsnack custom Color Palette
+ * Custom Color Palette
  */
 @Stable
 class MeditationColors(
@@ -277,7 +277,7 @@ fun ProvideMeditationColors(
 }
 
 private val LocalMeditationColors = staticCompositionLocalOf<MeditationColors> {
-    error("No JetsnackColorPalette provided")
+    error("No ColorPalette provided")
 }
 
 /**
