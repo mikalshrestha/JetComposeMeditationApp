@@ -22,7 +22,7 @@ data class ScheduleTutorial(
 val scheduleTutorial = ScheduleTutorial(
     id = 1L,
     title = "Follow Yoga",
-    imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
+    imageUrl = "https://source.unsplash.com/nqUHQkuVj3c",
     description = "Yoga’s deep breathing and meditation practices help foster an inner shift from to-do lists, kids and spouse’s needs, financial concerns, and relationship struggles to something a little bit bigger than the issues you face.",
     rating = "****(200)",
     totalPeriod = "2 Weeks",

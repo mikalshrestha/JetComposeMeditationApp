@@ -68,7 +68,7 @@ private fun HeaderImage(
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(240.dp),
+                .height(270.dp),
             contentScale = ContentScale.FillBounds
         )
     }

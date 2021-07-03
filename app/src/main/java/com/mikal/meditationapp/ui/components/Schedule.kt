@@ -90,6 +90,7 @@ fun SchedulesItem(
                 Text(
                     text = schedule.days,
                     maxLines = 2,
+                    textAlign = TextAlign.Start,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.body1,
                     color = MeditationTheme.colors.textSecondary,
@@ -98,6 +99,7 @@ fun SchedulesItem(
                 Text(
                     text = schedule.period,
                     maxLines = 2,
+                    textAlign = TextAlign.End,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.body1,
                     color = MeditationTheme.colors.textSecondary,
@@ -185,14 +187,17 @@ fun ShowScheduleTutorial(
                             .height(225.dp),
                         contentScale = ContentScale.FillBounds
                     )
-                    Box(){
-                        Text(
-                            text = scheduleTutorial.rating,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            style = MaterialTheme.typography.body1,
-                            color = MeditationTheme.colors.textColorWhite,
-                            modifier = Modifier.padding(horizontal = 16.dp)
+                    Box(Modifier.padding(50.dp).align(Alignment.Center)){
+                        Image(
+                            painter = rememberCoilPainter(
+                                request = R.drawable.ic_play_button,
+                                previewPlaceholder = R.drawable.placeholder,
+                            ),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .width(80.dp)
+                                .height(80.dp),
+                            contentScale = ContentScale.FillBounds
                         )
                     }
                 }

@@ -24,7 +24,7 @@ data class MostPopular(
 val mostPopular = MostPopular(
     id = 1L,
     title = "Yoga Basic Pack",
-    imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
+    imageUrl = "https://source.unsplash.com/GaprWyIw66o",
     author = "By Sh Shakil",
     totalPeriod = "3 Weeks",
     type = "Body Weight",

@@ -12,7 +12,6 @@ import com.mikal.meditationapp.ui.components.*
 
 @Composable
 fun Play(
-    onClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val beginnerStepGuideData = remember { BeginnerGuidePlayRepo.getBeginnerGuides() }
@@ -20,7 +19,6 @@ fun Play(
     Play(
         beginnerStepGuideData,
         mostPopularData,
-        onClick,
         modifier
     )
 
@@ -30,7 +28,6 @@ fun Play(
 private fun Play(
     beginnerStepGuideData: List<BeginnerStepGuide>,
     mostPopular: MostPopular,
-    onClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     MeditationSurface(modifier = modifier.fillMaxSize()) {
@@ -42,7 +39,7 @@ private fun Play(
                 ShowMostPopularView(mostPopular)
                 Spacer(modifier = Modifier.height(4.dp))
                 meditationDivider(thickness = 2.dp, modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 16.dp))
-                BeginnersGuideLazyRowView(beginnerStepGuideData, onClick)
+                BeginnersGuideLazyRowView(beginnerStepGuideData)
             }
 
         }
@@ -52,11 +49,10 @@ private fun Play(
 @Composable
 private fun BeginnersGuideLazyRowView(
     beginnerStepGuideData: List<BeginnerStepGuide>,
-    onClick: (Long) -> Unit
 ) {
     BeginnerGuides(
-        beginnerStepGuideData = beginnerStepGuideData,
-        onClick = onClick)
+        beginnerStepGuideData = beginnerStepGuideData
+    )
 }
 
 @Composable

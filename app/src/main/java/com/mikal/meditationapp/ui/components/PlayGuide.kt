@@ -30,13 +30,12 @@ import com.mikal.meditationapp.ui.theme.MeditationTheme
 @Composable
 fun BeginnerGuides(
     beginnerStepGuideData: List<BeginnerStepGuide>,
-    onClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier
             .fillMaxWidth()
-            .padding(top = 8.dp, bottom = 16.dp)
+            .padding(top = 8.dp, bottom = 16.dp, end = 8.dp)
     ) {
         Text(
             text = "Beginners Steps",
@@ -70,7 +69,7 @@ fun BeginnerGuides(
             if (index > 0) {
                 meditationDivider(thickness = 2.dp)
             }
-            BeginnerStepsItem(beginnerStepGuideData, onClick)
+            BeginnerStepsItem(beginnerStepGuideData)
         }
     }
 }
@@ -79,7 +78,6 @@ fun BeginnerGuides(
 @Composable
 fun BeginnerStepsItem(
     beginnerStepGuideData: BeginnerStepGuide,
-    onClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row() {
@@ -89,7 +87,7 @@ fun BeginnerStepsItem(
                     width = 200.dp,
                     height = 250.dp
                 )
-                .padding(start = 16.dp, bottom = 16.dp)
+                .padding(start = 16.dp, bottom = 16.dp, end = 16.dp)
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
                 Column(modifier = modifier) {
@@ -97,7 +95,6 @@ fun BeginnerStepsItem(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .heightIn(min = 56.dp)
-                            .clickable(onClick = { onClick(beginnerStepGuideData.id) })
                     ) {
                         BeginnerStepsImage(
                             imageUrl = beginnerStepGuideData.imageUrl,

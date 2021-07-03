@@ -25,7 +25,7 @@ val beginnerStepGuide = listOf(
     BeginnerStepGuide(
         id = 2L,
         title = "Body Weight",
-        imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
+        imageUrl = "https://source.unsplash.com/p-v1DBkTrgo",
         period = "3 Week"
     ),
     BeginnerStepGuide(
@@ -37,25 +37,25 @@ val beginnerStepGuide = listOf(
     BeginnerStepGuide(
         id = 4L,
         title = "Body Weight",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/NTyBbu66_SI",
         period = "1 Week"
     ),
     BeginnerStepGuide(
         id = 5L,
         title = "Body Weight",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/tyCVZ1Aaqxo",
         period = "1 Week"
     ),
     BeginnerStepGuide(
         id = 6L,
         title = "Body Weight",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
         period = "1 Week"
     ),
     BeginnerStepGuide(
         id = 7L,
         title = "Body Weight",
-        imageUrl = "https://source.unsplash.com/pGM4sjt_BdQ",
+        imageUrl = "https://source.unsplash.com/F2qh3yjz6Jk",
         period = "1 Week"
     )
 )
