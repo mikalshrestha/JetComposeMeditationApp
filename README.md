@@ -31,3 +31,5 @@ https://www.uplabs.com/posts/meditation-mobile-app-design-concept
 - Compose Navigation
 - Animation
 - Custom Layout etc.
+
+| <br><img src="Screenshots/Screenshot_1625298797.png" width="240"></img>  <br><br>A Compose implementation of the Crane Material study, a travel app that uses Material Design components and Material Theming to create a personalized, on-brand experience.<br><br>• Medium complexity<br>• Draggable UI elements<br>• Android Views inside Compose<br>• UI state handling<br>• UI Tests<br><br>**[> Browse](Crane/)** <br><br>  | <img src="readme/screenshots/Crane.png" width="320" alt="Crane sample demo">|
