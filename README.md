@@ -6,7 +6,6 @@ This is a sample meditation android application that demonstrate the use of Jetp
  ## -Requirements💻
 To build this project, you need to use the latest version of [Android Studio Arctic Fox](https://developer.android.com/studio/preview).
 You can clone this repository and build on this android studio version.
-[here](https://developer.android.com/jetpack/compose/setup#sample).
 
 ## - Modules
 - App - It uses the all the components and class releated to the Android Framework. It gets the data from repo and shows on Compose-UI.
