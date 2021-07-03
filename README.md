@@ -31,4 +31,5 @@ https://www.uplabs.com/posts/meditation-mobile-app-design-concept
 - Spacer
 - ConstraintLayout
 - Compose Navigation
+- Animation
 - Custom Layout etc.
