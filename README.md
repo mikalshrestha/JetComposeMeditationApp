@@ -11,9 +11,11 @@ You can clone this repository and build on this android studio version.
 - App - It uses the all the components and class releated to the Android Framework. It gets the data from repo and shows on Compose-UI.
 - BuildSrc - This module helps to list and manage all the dependencies of the app at one place. It has list of dependencies and versions of that dependencies. Helps for reusing the dependencies for multiple modules.
 
-<b>Mockup Design from here:</b>
+<b>Mockup Design and Image Source from here:</b>
 
 https://www.uplabs.com/posts/meditation-mobile-app-design-concept
+
+https://unsplash.com/s/photos/yoga
 
 ## - Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - Programming language for Android development.
