@@ -49,7 +49,7 @@ fun NavGraphBuilder.addHomeGraph(
         Play(onClick = { id -> onSelected(id, from) }, modifier)
     }
     composable(HomeSections.TRENDING.route) {
-        Trending()
+        Trending( modifier)
     }
     composable(HomeSections.SETTINGS.route) { from ->
         Settings(onClick = { id -> onSelected(id, from) }, modifier)

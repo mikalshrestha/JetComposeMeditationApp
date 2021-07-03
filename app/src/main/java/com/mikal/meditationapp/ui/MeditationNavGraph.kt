@@ -5,10 +5,15 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.mikal.meditationapp.ui.MainDestinations.ID_KEY
 import com.mikal.meditationapp.ui.home.HomeSections
+import com.mikal.meditationapp.ui.home.ScheduleDetail
 import com.mikal.meditationapp.ui.home.addHomeGraph
 
 /**
@@ -16,7 +21,8 @@ import com.mikal.meditationapp.ui.home.addHomeGraph
  */
 object MainDestinations {
     const val HOME_ROUTE = "home"
-    const val DETAIL_ROUTE = "snack"
+    const val DETAIL_ROUTE = "schedule"
+    const val ID_KEY = "id"
 }
 
 @Composable
@@ -35,13 +41,26 @@ fun meditationNavGraph(
             startDestination = HomeSections.FEED.route
         ) {
             addHomeGraph(
-                onSelected = { snackId: Long, from: NavBackStackEntry ->
+                onSelected = { id: Long, from: NavBackStackEntry ->
                     // In order to discard duplicated navigation events, we check the Lifecycle
                     if (from.lifecycleIsResumed()) {
-                        navController.navigate("${MainDestinations.DETAIL_ROUTE}/$snackId")
+                        navController.navigate("${MainDestinations.DETAIL_ROUTE}/$id")
                     }
                 },
                 modifier = modifier
+            )
+        }
+        composable(
+            "${MainDestinations.DETAIL_ROUTE}/{$ID_KEY}",
+            arguments = listOf(navArgument(ID_KEY) { type = NavType.LongType })
+        ) { backStackEntry ->
+            val arguments = requireNotNull(backStackEntry.arguments)
+            val id = arguments.getLong(ID_KEY)
+            ScheduleDetail(
+                id = id,
+                upPress = {
+                    navController.navigateUp()
+                }
             )
         }
     }
