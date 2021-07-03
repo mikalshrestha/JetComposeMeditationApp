@@ -3,6 +3,13 @@
 
 This is a sample meditation android application that demonstrate the use of Jetpack Compose.
 
+ ## -Requirements💻
+------------
+To build this project, you need to use the latest version of [Android Studio Arctic Fox](https://developer.android.com/studio/preview).
+You can clone this repository or import the
+project from Android Studio following the steps
+[here](https://developer.android.com/jetpack/compose/setup#sample).
+
 ## - Modules
 - App - It uses the all the components and class releated to the Android Framework. It gets the data from repo and shows on Compose-UI.
 - BuildSrc - This module helps to list and manage all the dependencies of the app at one place. It has list of dependencies and versions of that dependencies. Helps for reusing the dependencies for multiple modules.
